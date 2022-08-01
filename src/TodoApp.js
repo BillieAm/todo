@@ -34,6 +34,13 @@ function TodoApp() {
     setTodos(updatedTodos);
   };
 
+  const editTodo = (todoId, newTask) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === todoId ? { ...todo, task: newTask } : todo
+    );
+    setTodos(updatedTodos);
+  };
+
   return (
     <Paper
       elevation={0}
@@ -46,7 +53,7 @@ function TodoApp() {
     >
       <AppBar position="static" color="primary" style={{ height: "64px" }}>
         <Toolbar>
-          <Typography color="inherit">TODOS WITH HOOKS</Typography>
+          <Typography color="inherit">TODO APP</Typography>
         </Toolbar>
       </AppBar>
       <Grid container justifyContent="center" style={{ marginTop: "1em" }}>
@@ -56,6 +63,7 @@ function TodoApp() {
             todos={todos}
             removeTodo={removeTodo}
             toggleTodo={toggleTodo}
+            editTodo={editTodo}
           />
         </Grid>
       </Grid>
