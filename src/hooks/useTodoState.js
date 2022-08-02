@@ -1,3 +1,4 @@
+// cSpell:words todos uuidv
 import useLocalStorage from "./useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
 

@@ -1,3 +1,4 @@
+// cSpell:words todos
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import AppBar from "@mui/material/AppBar";
@@ -9,7 +10,7 @@ import TodoList from "./components/TodoList";
 import useTodoState from "./hooks/useTodoState";
 
 function TodoApp() {
-  const initialTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  const initialTodos = {};
   const { todos, addTodo, removeTodo, toggleTodo, editTodo } =
     useTodoState(initialTodos);
 
