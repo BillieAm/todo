@@ -4,19 +4,19 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Grid from "@mui/material/Grid";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 
 function TodoApp() {
-  const initialTodos = [
-    { id: 1, task: "Finish Todo App", completed: false },
-    { id: 2, task: "Finish Dummy-shop App", completed: false },
-    { id: 3, task: "Finish Portfolio Website", completed: true },
-  ];
+  const initialTodos = JSON.parse(localStorage.getItem("todos")) || [];
   const [todos, setTodos] = useState(initialTodos);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (newTodoText) => {
     setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }]);
