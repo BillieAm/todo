@@ -2,7 +2,7 @@
 import { createContext } from "react";
 import useTodoState from "../hooks/useTodoState";
 
-const todosContext = createContext();
+const TodosContext = createContext();
 
 const defaultTodos = [
   { id: 1, task: "something1", completed: false },
@@ -13,10 +13,10 @@ function TodosProvider(props) {
   const todosStuff = useTodoState(defaultTodos);
 
   return (
-    <todosContext.Provider value={todosStuff}>
+    <TodosContext.Provider value={todosStuff}>
       {props.children}
-    </todosContext.Provider>
+    </TodosContext.Provider>
   );
 }
 
-export { TodosProvider, todosContext };
+export { TodosProvider, TodosContext };
