@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import useTodoState from "./hooks/useTodoState";
+import { TodosProvider } from "./context/todos.context";
 
 function TodoApp() {
   const initialTodos = {};
@@ -31,13 +32,15 @@ function TodoApp() {
       </AppBar>
       <Grid container justifyContent="center" style={{ marginTop: "1em" }}>
         <Grid item xs={11} md={8} lg={4}>
-          <TodoForm addTodo={addTodo} />
-          <TodoList
-            todos={todos}
-            removeTodo={removeTodo}
-            toggleTodo={toggleTodo}
-            editTodo={editTodo}
-          />
+          <TodosProvider>
+            <TodoForm addTodo={addTodo} />
+            <TodoList
+              todos={todos}
+              removeTodo={removeTodo}
+              toggleTodo={toggleTodo}
+              editTodo={editTodo}
+            />
+          </TodosProvider>
         </Grid>
       </Grid>
     </Paper>
