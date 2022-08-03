@@ -7,14 +7,9 @@ import Grid from "@mui/material/Grid";
 
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import useTodoState from "./hooks/useTodoState";
 import { TodosProvider } from "./context/todos.context";
 
 function TodoApp() {
-  const initialTodos = {};
-  const { todos, addTodo, removeTodo, toggleTodo, editTodo } =
-    useTodoState(initialTodos);
-
   return (
     <Paper
       elevation={0}
@@ -33,13 +28,8 @@ function TodoApp() {
       <Grid container justifyContent="center" style={{ marginTop: "1em" }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodosProvider>
-            <TodoForm addTodo={addTodo} />
-            <TodoList
-              todos={todos}
-              removeTodo={removeTodo}
-              toggleTodo={toggleTodo}
-              editTodo={editTodo}
-            />
+            <TodoForm />
+            <TodoList />
           </TodosProvider>
         </Grid>
       </Grid>

@@ -3,21 +3,19 @@ import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 
+import { useContext } from "react";
 import Todo from "./Todo";
+import { TodosContext } from "../context/todos.context";
 
-function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
+function TodoList() {
+  const { todos } = useContext(TodosContext);
   if (todos.length) {
     return (
       <Paper>
         <List>
           {todos.map((todo, i) => (
             <div key={todo.id}>
-              <Todo
-                {...todo}
-                removeTodo={removeTodo}
-                toggleTodo={toggleTodo}
-                editTodo={editTodo}
-              />
+              <Todo {...todo} />
               {i < todos.length - 1 && <Divider />}
             </div>
           ))}

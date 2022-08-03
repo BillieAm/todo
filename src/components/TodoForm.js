@@ -1,10 +1,14 @@
+// cSpell:words todos
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 
+import { useContext } from "react";
 import useInputState from "../hooks/useInputState";
+import { TodosContext } from "../context/todos.context";
 
-function TodoForm({ addTodo }) {
+function TodoForm() {
   const [value, handleChange, reset] = useInputState("");
+  const { addTodo } = useContext(TodosContext);
 
   return (
     <Paper style={{ margin: "1em 0", padding: "0 1em" }}>

@@ -1,3 +1,4 @@
+// cSpell:words todos
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
@@ -6,20 +7,18 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 
+import { useContext } from "react";
 import EditTodoForm from "./EditTodoForm";
 import useToggleState from "../hooks/useToggleState";
+import { TodosContext } from "../context/todos.context";
 
-function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
+function Todo({ id, task, completed }) {
+  const { removeTodo, toggleTodo } = useContext(TodosContext);
   const [isEditing, toggle] = useToggleState(false);
   return (
     <ListItem style={{ height: "64px" }}>
       {isEditing ? (
-        <EditTodoForm
-          id={id}
-          task={task}
-          editTodo={editTodo}
-          toggleEditForm={toggle}
-        />
+        <EditTodoForm id={id} task={task} toggleEditForm={toggle} />
       ) : (
         <>
           <Checkbox
