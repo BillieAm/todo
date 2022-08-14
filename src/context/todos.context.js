@@ -1,19 +1,17 @@
 // cSpell:words todos
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
+import todoReducer from "../todo.reducer";
 import useTodoState from "../hooks/useTodoState";
 
 const TodosContext = createContext();
 
-const defaultTodos = [
-  { id: 1, task: "something1", completed: false },
-  { id: 1, task: "something2", completed: true },
-];
+const defaultTodos = [];
 
 function TodosProvider(props) {
-  const todosStuff = useTodoState(defaultTodos);
+  const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
 
   return (
-    <TodosContext.Provider value={todosStuff}>
+    <TodosContext.Provider value={{ todos, dispatch }}>
       {props.children}
     </TodosContext.Provider>
   );
